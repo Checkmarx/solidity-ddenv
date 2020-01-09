@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [ "$#" -eq 0 ] || [ "$1" = "start" ];
+then
+    docker-compose up -d || exit 1
+
+    export PATH="$PATH:$(pwd)"
+    cd ./workspace
+    exec bash
+elif [ "$1" = "stop" ];
+then
+    docker-compose down
+elif [ "$1" = "truffle" ];
+then
+    docker-compose run -v "$(pwd):/workdir" --rm "$1" "$@"
+fi
+

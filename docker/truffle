@@ -1,0 +1,8 @@
+FROM alpine:latest
+
+WORKDIR /workdir
+
+RUN apk update && apk upgrade && apk add su-exec nodejs nodejs-npm
+
+RUN npm install -g --unsafe-perm=true --allow-root truffle
+
